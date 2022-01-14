@@ -1,0 +1,165 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Nunito', sans-serif;
+  font-size: 16px;
+}
+
+button {
+  border: 0;
+  background-color: transparent;
+  font-size: inherit;
+  cursor: pointer;
+}
+
+input,
+textarea {
+  border: 0;
+  font-family: inherit;
+}
+
+input:focus,
+textarea:focus {
+  outline: 0;
+}
+
+.main {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: space-between;
+}
+
+.nav {
+  width: 25%;
+  min-width: 250px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding: 12px 24px;
+  overflow-y: scroll;
+}
+
+.nav::-webkit-scrollbar {
+  width: 6px;
+}
+.nav::-webkit-scrollbar-thumb {
+  background-color: rgb(102, 102, 102);
+  border-radius: 8px;
+}
+
+.btn-new-note {
+  width: 50px;
+  font-size: 24px;
+  height: 50px;
+  background-color: rgb(46, 46, 46);
+  color: white;
+  border-radius: 6px;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  border-radius: 50%;
+  transition: transform 0.4s;
+}
+.btn-new-note:hover {
+  transform: rotate(180deg);
+}
+
+.notes-template {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 12px;
+  border-radius: 12px;
+  border: 1px solid rgb(189, 189, 189);
+}
+
+.btn-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.notes-template-title {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.notes-template-time {
+  font-size: 12px;
+}
+
+.notes-template:nth-child(2) {
+  background-color: rgb(144, 238, 144, 0.4);
+}
+
+.notes-template:nth-child(3) {
+  background-color: rgb(107, 0, 207, 0.4);
+}
+
+.notes-template:nth-child(4) {
+  background-color: rgb(255, 136, 0, 0.4);
+}
+.notes-template:nth-child(5) {
+  background-color: rgba(255, 26, 26, 0.4);
+}
+
+.notes-template:last-child {
+  background-color: rgb(0, 162, 255, 0.4);
+}
+.btn--color {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+}
+
+.btn--red {
+  background-color: #ff1818;
+}
+
+.btn--green {
+  background-color: #90ee90;
+}
+
+.btn--purple {
+  background-color: #6b00cf;
+}
+
+.btn--orange {
+  background-color: #ff8800;
+}
+
+.btn--blue {
+  background-color: #00a2ff;
+}
+
+.btn--color.active {
+  outline: 2px solid rgb(255, 255, 255);
+}
+
+.note {
+  width: 75%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.input--notes-title {
+  font-size: 32px;
+  font-weight: 600;
+  padding: 12px 72px 12px 12px;
+}
+
+.input-notes-content {
+  resize: none;
+  flex-grow: 1;
+  font-size: 18px;
+  padding: 0px 72px 0px 12px;
+}
