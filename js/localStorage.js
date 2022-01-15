@@ -12,10 +12,10 @@ export default class Storage {
     if (alreadySaved) {
       (alreadySaved.title = note.title),
         (alreadySaved.content = note.content),
-        (alreadySaved.time = new Date());
+        (alreadySaved.time = new Date().toLocaleString());
     } else {
       note.id = Math.floor(Math.random() * 100000000);
-      note.updated_time = new Date().toLocaleTimeString();
+      note.updated_time = new Date().toLocaleString();
       notes.push(note);
     }
 

@@ -1,8 +1,10 @@
 export default class Modal {
-  constructor(main, { createNote, saveNote, deleteNote, updataNote }) {
+  constructor(main, { createNote, selectNote, deleteNote, updataNote }) {
     this.main = main;
     this.createNote = createNote;
-    this.saveNote = saveNote;
+    this.selectNote = selectNote;
+    this.updataNote = updataNote;
+    this.deleteNote = deleteNote;
 
     const html = `
     <button class="btn-new-note">+</button>
@@ -20,29 +22,20 @@ export default class Modal {
 
     const nav = this.main.querySelector('.nav');
 
-    console.log(this);
-
     btnAddNote.addEventListener('click', () => {
       createNote();
-
-      console.log('ADD NEW NOTE !!!!!!!!!!!!!');
-    });
-
-    nav.addEventListener('click', (e) => {
-      if (!e.target.closest('.notes-template')) return;
-      console.log('SHOW THIS NOTES 📝📝📝📝📝');
     });
 
     [inputTitle, inputContent].forEach((input) => {
       input.addEventListener('blur', () => {
-        this.saveNote(inputTitle.value, inputContent.value);
+        this.createNote(inputTitle.value, inputContent.value);
       });
     });
   }
 
   _createNotesTemplate(id, title, content, time, color) {
-    const MAX_TITLE_LENGTH = 45;
-    const MAX_CONTENT_LENGTH = 65;
+    const MAX_TITLE_LENGTH = 55;
+    const MAX_CONTENT_LENGTH = 75;
     const notesTemplate = `
     <div class="notes-template" data-id="${id}" style="background-color:${color}">
         <div class="btn-container">
@@ -76,7 +69,6 @@ export default class Modal {
 
   _updateNotes(notes) {
     notes.forEach((note) => {
-      console.log('update notes function');
       this._createNotesTemplate(
         note.id,
         note.title,
@@ -85,5 +77,10 @@ export default class Modal {
         note.color
       );
     });
+  }
+
+  _updateActiveNote(note) {
+    this.main.querySelector('.input--note-title').value = note.title;
+    this.main.querySelector('.input--note-content').value = note.content;
   }
 }
