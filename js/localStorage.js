@@ -15,7 +15,7 @@ export default class Storage {
         (alreadySaved.time = new Date());
     } else {
       note.id = Math.floor(Math.random() * 100000000);
-      note.updated_time = new Date().toLocaleDateString();
+      note.updated_time = new Date().toLocaleTimeString();
       notes.push(note);
     }
 
