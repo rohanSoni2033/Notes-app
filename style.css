@@ -85,17 +85,14 @@ textarea:focus {
   cursor: pointer;
 }
 
-.notes-template.active {
-  outline: 1px solid blue;
-}
-
-.notes-template.active {
-  outline: 4px solid rgb(5, 5, 5);
-}
-
 .notes-template:hover {
   transform: translateY(-8px);
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.notes-template.active {
+  /* transform: translateX(20px); */
+  outline: 4px solid rgb(5, 5, 5);
 }
 
 .notes-template.dlt--note {

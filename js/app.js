@@ -4,18 +4,23 @@ import Modal from './modal.js';
 export default class App {
   constructor(root) {
     this.root = root;
+    this.notes = [];
 
-    const notes = Storage.getAllNotes();
-
-    const modal = new Modal(root, {
+    this.modal = new Modal(root, {
       createNote: (title, content) => {
         Storage.saveNote({
-          title: title,
-          content: content,
+          title,
+          content,
           color: 'white',
         });
-        console.log(title);
-        console.log(content);
+
+        this._refresh();
+      },
+      selectNote: (id) => {
+        const note = this.notes.find((note) => note.id === +id);
+
+        this.modal._contentVisible(true);
+        this.modal._updateActiveNote(note);
       },
       deleteNote: (id) => {
         Storage.deleteNotes(id);
@@ -25,6 +30,16 @@ export default class App {
       },
     });
 
-    notes.forEach((note) => modal._createNotesTemplate(note));
+    this._refresh();
+  }
+
+  _refresh() {
+    this.root.querySelector('.nav').innerHTML = ``;
+    this.notes = Storage.getAllNotes();
+    this.notes.forEach((note) => this.modal._createNotesTemplate(note));
   }
 }
+
+// select node
+// edit note
+// create note

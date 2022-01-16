@@ -1,9 +1,14 @@
 export default class Modal {
-  constructor(root, { deleteNote, changeCardColor, createNote } = {}) {
+  constructor(
+    root,
+    { deleteNote, changeCardColor, createNote, selectNote, updateNote } = {}
+  ) {
     this.root = root;
     this.deleteNote = deleteNote;
     this.createNote = createNote;
     this.changeCardColor = changeCardColor;
+    this.selectNote = selectNote;
+    this.updateNote = updateNote;
 
     const html = `
     <button class="btn-new-note">+</button>
@@ -26,11 +31,13 @@ export default class Modal {
       createNote('my note 📝', 'i gonna dance, sing , play , study , watch tv');
     });
 
-    // [inputTitle, inputContent].forEach((input) => {
-    //   input.addEventListener('blur', () => {
-    //     this.createNote(inputTitle.value, inputContent.value);
-    //   });
-    // });
+    [inputTitle, inputContent].forEach((input) => {
+      input.addEventListener('blur', () => {
+        this.updated_time(inputTitle.value, inputContent.value);
+      });
+    });
+
+    this._contentVisible(false);
   }
 
   _createNotesTemplate({ id, title, content, updated_time, color }) {
@@ -92,6 +99,17 @@ export default class Modal {
       const btnChangeColor = e.target.closest('.btn--color');
       const btnDeleteNote = e.target.closest('.btn--dlt');
       const btnEditNote = e.target.closest('.btn--edit');
+      const noteCard = e.target.closest('.notes-template');
+
+      if (noteCard) {
+        // console.log(noteCard.dataset.id);
+        nav
+          .querySelectorAll('.notes-template')
+          .forEach((card) => card.classList.remove('active'));
+        noteCard.classList.add('active');
+
+        this.selectNote(noteCard.dataset.id);
+      }
 
       if (btnChangeColor) {
         this.changeCardColor(
@@ -117,5 +135,11 @@ export default class Modal {
         }, 500);
       }
     });
+  }
+
+  _contentVisible(active) {
+    this.root.querySelector('.note-container').style.visibility = `${
+      active ? 'visible' : 'hidden'
+    }`;
   }
 }
