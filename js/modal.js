@@ -1,7 +1,8 @@
 export default class Modal {
-  constructor(root, { deleteNote, changeCardColor } = {}) {
+  constructor(root, { deleteNote, changeCardColor, createNote } = {}) {
     this.root = root;
     this.deleteNote = deleteNote;
+    this.createNote = createNote;
     this.changeCardColor = changeCardColor;
 
     const html = `
@@ -21,9 +22,9 @@ export default class Modal {
 
     const nav = this.root.querySelector('.nav');
 
-    // btnAddNote.addEventListener('click', () => {
-    //   createNote();
-    // });
+    btnAddNote.addEventListener('click', () => {
+      createNote('my note 📝', 'i gonna dance, sing , play , study , watch tv');
+    });
 
     // [inputTitle, inputContent].forEach((input) => {
     //   input.addEventListener('blur', () => {
@@ -64,7 +65,7 @@ export default class Modal {
 
     this.root
       .querySelector('.nav')
-      .insertAdjacentHTML('beforeend', notesTemplate);
+      .insertAdjacentHTML('afterbegin', notesTemplate);
   }
 
   _updateNotes(notes) {

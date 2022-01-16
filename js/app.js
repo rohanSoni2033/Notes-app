@@ -8,6 +8,15 @@ export default class App {
     const notes = Storage.getAllNotes();
 
     const modal = new Modal(root, {
+      createNote: (title, content) => {
+        Storage.saveNote({
+          title: title,
+          content: content,
+          color: 'white',
+        });
+        console.log(title);
+        console.log(content);
+      },
       deleteNote: (id) => {
         Storage.deleteNotes(id);
       },
