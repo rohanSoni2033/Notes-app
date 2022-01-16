@@ -80,13 +80,27 @@ textarea:focus {
   padding: 12px;
   border-radius: 12px;
   box-shadow: 0 1px 6px rgba(0, 0, 0, 0.2);
-  transition: all 0.4s;
+  transition: all 0.4s ease-out;
   cursor: pointer;
+}
+
+.notes-template.active {
+  outline: 1px solid blue;
+}
+
+.notes-template.active {
+  outline: 4px solid rgb(5, 5, 5);
 }
 
 .notes-template:hover {
   transform: translateY(-8px);
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.notes-template.dlt--note {
+  transform: translateX(-100%) translateY(-100%);
+  /* transform: translateX(-500px); */
+  opacity: 0;
 }
 
 .btn-container {
@@ -103,28 +117,17 @@ textarea:focus {
   font-size: 12px;
 }
 
-/* .notes-template:nth-child(2) {
-  background-color: rgb(144, 238, 144, 0.4);
-}
-
-.notes-template:nth-child(3) {
-  background-color: rgb(107, 0, 207, 0.4);
-}
-
-.notes-template:nth-child(4) {
-  background-color: rgb(255, 136, 0, 0.4);
-}
-.notes-template:nth-child(5) {
-  background-color: rgba(255, 26, 26, 0.4);
-}
-
-.notes-template:last-child {
-  background-color: rgb(0, 162, 255, 0.4);
-} */
 .btn--color {
   width: 18px;
   height: 18px;
   border-radius: 50%;
+}
+
+.btn--dlt:hover {
+  color: rgb(255, 0, 0);
+}
+.btn--edit:hover {
+  color: rgb(132, 0, 255);
 }
 
 .btn--color.active {
