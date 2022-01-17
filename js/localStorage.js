@@ -9,11 +9,14 @@ export default class Storage {
 
     const alreadySaved = notes.find((n) => n.id === +note.id);
 
+    console.log(note);
+    console.log(alreadySaved);
+
     if (alreadySaved) {
       (alreadySaved.title = note.title),
         (alreadySaved.content = note.content),
         (alreadySaved.color = note.color),
-        (alreadySaved.time = new Date().toLocaleString());
+        (alreadySaved.updated_time = new Date().toLocaleString());
     } else {
       note.id = Math.floor(Math.random() * 100000000);
       note.updated_time = new Date().toLocaleString();

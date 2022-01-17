@@ -52,7 +52,7 @@ textarea:focus {
   width: 4px;
 }
 .sidebar::-webkit-scrollbar-thumb {
-  background-color: rgb(102, 102, 102, 0.2);
+  background-color: #66666633;
 }
 
 .btn--add-note {
@@ -88,14 +88,14 @@ textarea:focus {
   gap: 12px;
   padding: 12px;
   border-radius: 12px;
-  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 1px 6px #00000033;
   transition: all 0.2s ease-out;
   cursor: pointer;
 }
 
 .sidebar_note-card:hover {
   transform: translateY(-6px);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 8px 16px #00000033;
 }
 
 .sidebar_note-card.active {

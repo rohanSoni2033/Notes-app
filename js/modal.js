@@ -4,11 +4,13 @@ export default class Modal {
     { deleteNote, changeCardColor, createNote, selectNote, updateNote } = {}
   ) {
     this.root = root;
+
     this.deleteNote = deleteNote;
     this.createNote = createNote;
-    this.changeCardColor = changeCardColor;
     this.selectNote = selectNote;
     this.updateNote = updateNote;
+
+    this.changeCardColor = changeCardColor;
 
     const html = `
     <button class="btn--add-note">+</button>
@@ -76,7 +78,7 @@ export default class Modal {
 
     this.root
       .querySelector(`.btn--note-card-color[data-color="${color}"]`)
-      .classList.add('active');
+      ?.classList.add('active');
   }
 
   _updateNotes(notes) {
@@ -105,7 +107,7 @@ export default class Modal {
       const btnEditNote = e.target.closest('.btn--edit-note');
       const noteCard = e.target.closest('.sidebar_note-card');
 
-      if (noteCard) {
+      if (noteCard && !btnDeleteNote && !btnChangeColor) {
         sidebar
           .querySelectorAll('.sidebar_note-card')
           .forEach((card) => card.classList.remove('active'));
@@ -115,26 +117,21 @@ export default class Modal {
       }
 
       if (btnChangeColor) {
-        this.changeCardColor(
-          e.target.closest('.sidebar_note-card').dataset.id,
-          btnChangeColor.dataset.color
-        );
-        e.target.closest(
-          '.sidebar_note-card'
-        ).style.backgroundColor = `${btnChangeColor.dataset.color}`;
+        this.changeCardColor(noteCard.dataset.id, btnChangeColor.dataset.color);
+        noteCard.style.backgroundColor = `${btnChangeColor.dataset.color}`;
 
-        const btnColor = e.target
-          .closest('.sidebar_note-card')
-          .querySelectorAll('.btn--note-card-color');
-        btnColor.forEach((btn) => btn.classList.remove('active'));
+        const btnNoteCardColor = noteCard.querySelectorAll(
+          '.btn--note-card-color'
+        );
+        btnNoteCardColor.forEach((btn) => btn.classList.remove('active'));
         btnChangeColor.classList.add('active');
       }
 
       if (btnDeleteNote) {
-        this.deleteNote(e.target.closest('.sidebar_note-card').dataset.id);
-        e.target.closest('.sidebar_note-card').classList.add('dlt--note');
+        this.deleteNote(noteCard.dataset.id);
+        noteCard.classList.add('dlt--note');
         setTimeout(() => {
-          e.target.closest('.sidebar_note-card').remove();
+          noteCard.remove();
         }, 500);
       }
     });
