@@ -30,7 +30,7 @@ export default class Modal {
     const sidebar = this.root.querySelector('.sidebar');
 
     btnAddNote.addEventListener('click', () => {
-      createNote('my note 📝', 'i gonna dance, sing , play , study , watch tv');
+      createNote('my note 📝', '✅ Start writing your note...');
     });
 
     [inputTitle, inputContent].forEach((input) => {

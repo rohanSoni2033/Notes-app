@@ -5,15 +5,24 @@ export default class App {
   constructor(root) {
     this.root = root;
     this.notes = [];
+    this.modal = new Modal(root, this._handlers());
+    this._refresh();
+  }
 
-    this.modal = new Modal(root, {
+  _refresh() {
+    this.root.querySelector('.sidebar').innerHTML = ``;
+    this.notes = Storage.getAllNotes();
+    this.notes.forEach((note) => this.modal._createNotesTemplate(note));
+  }
+
+  _handlers() {
+    return {
       createNote: (title, content) => {
         Storage.saveNote({
           title,
           content,
           color: 'white',
         });
-
         this._refresh();
       },
       updateNote: (title, content) => {
@@ -26,27 +35,19 @@ export default class App {
       },
       selectNote: (id) => {
         const note = this.notes.find((note) => note.id === +id);
-
         this.activeNote = note;
-
         this.modal._contentVisible(true);
         this.modal._updateActiveNote(note);
       },
       deleteNote: (id) => {
         Storage.deleteNotes(id);
-        // this._refresh();
+        if (this.activeNote.id === +id) {
+          this.modal._contentVisible(false);
+        }
       },
       changeCardColor: (id, color) => {
         Storage.changeCardColor(id, color);
       },
-    });
-
-    this._refresh();
-  }
-
-  _refresh() {
-    this.root.querySelector('.sidebar').innerHTML = ``;
-    this.notes = Storage.getAllNotes();
-    this.notes.forEach((note) => this.modal._createNotesTemplate(note));
+    };
   }
 }
