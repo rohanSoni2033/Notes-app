@@ -33,7 +33,7 @@ export default class Modal {
 
     [inputTitle, inputContent].forEach((input) => {
       input.addEventListener('blur', () => {
-        this.updated_time(inputTitle.value, inputContent.value);
+        this.updateNote(inputTitle.value, inputContent.value);
       });
     });
 
