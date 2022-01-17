@@ -48,12 +48,12 @@ export default class Modal {
     const notesTemplate = `
     <div class="sidebar_note-card" data-id="${id}" style="background-color:${color}">
         <div class="sidebar_note-card_btn-container">
-            <button class="btn--note-card-color" style="background-color: #ff1818;" data-color="#ff18184d"></button>
-            <button class="btn--note-card-color" style="background-color: #90ee90;" data-color="#90ee904d"></button>
-            <button class="btn--note-card-color" style="background-color: #6b00cf;" data-color="#6b00cf4d"></button>
+            <button class="btn--note-card-color" style="background-color: #ff1818;" data-color="#ff181855"></button>
+            <button class="btn--note-card-color" style="background-color: #90ee90;" data-color="#90ee9055"></button>
+            <button class="btn--note-card-color" style="background-color: #6b00cf;" data-color="#6b00cf55"></button>
             <button class="btn--note-card-color" style="background-color: #ff8800;" 
-            data-color="#ff88004d"</button>
-            <button class="btn--note-card-color" style="background-color: #00a2ff;" data-color="#00a2ff4d"></button>
+            data-color="#ff880055"</button>
+            <button class="btn--note-card-color" style="background-color: #00a2ff;" data-color="#00a2ff55"></button>
             <button class="btn--note-card-color" style="background-color: #fff;" data-color="#fff"></button>
             <button class="btn--dlt-note"><i class="far fa-trash-alt"></i></button>
         </div>
