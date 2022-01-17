@@ -1,7 +1,7 @@
 export default class Modal {
   constructor(
     root,
-    { deleteNote, changeCardColor, createNote, selectNote, updateNote } = {}
+    { deleteNote, createNote, selectNote, updateNote, changeCardColor } = {}
   ) {
     this.root = root;
 
@@ -9,7 +9,6 @@ export default class Modal {
     this.createNote = createNote;
     this.selectNote = selectNote;
     this.updateNote = updateNote;
-
     this.changeCardColor = changeCardColor;
 
     const html = `
@@ -21,9 +20,8 @@ export default class Modal {
     </div>`;
 
     root.insertAdjacentHTML('afterbegin', html);
-    this._ButtonHandler();
-
     this.sidebar = this.root.querySelector('.sidebar');
+    this._ButtonHandler();
 
     const btnAddNote = this.root.querySelector('.btn--add-note');
     const inputTitle = this.root.querySelector('.input--note-title');
@@ -104,9 +102,7 @@ export default class Modal {
   }
 
   _ButtonHandler() {
-    const sidebar = this.root.querySelector('.sidebar');
-
-    sidebar.addEventListener('click', (e) => {
+    this.sidebar.addEventListener('click', (e) => {
       const btnChangeColor = e.target.closest('.btn--note-card-color');
       const btnDeleteNote = e.target.closest('.btn--dlt-note');
       const noteCard = e.target.closest('.sidebar_note-card');
@@ -135,7 +131,7 @@ export default class Modal {
         noteCard.classList.add('dlt--note');
         setTimeout(() => {
           noteCard.remove();
-        }, 500);
+        }, 400);
       }
     });
   }
