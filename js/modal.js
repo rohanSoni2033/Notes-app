@@ -73,6 +73,10 @@ export default class Modal {
     this.root
       .querySelector('.sidebar')
       .insertAdjacentHTML('afterbegin', notesTemplate);
+
+    this.root
+      .querySelector(`.btn--note-card-color[data-color="${color}"]`)
+      .classList.add('active');
   }
 
   _updateNotes(notes) {
@@ -102,7 +106,6 @@ export default class Modal {
       const noteCard = e.target.closest('.sidebar_note-card');
 
       if (noteCard) {
-        // console.log(noteCard.dataset.id);
         sidebar
           .querySelectorAll('.sidebar_note-card')
           .forEach((card) => card.classList.remove('active'));
