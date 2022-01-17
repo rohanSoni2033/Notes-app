@@ -8,10 +8,6 @@ export default class Storage {
     const notes = Storage.getAllNotes() || [];
 
     const alreadySaved = notes.find((n) => n.id === +note.id);
-
-    console.log(note);
-    console.log(alreadySaved);
-
     if (alreadySaved) {
       (alreadySaved.title = note.title),
         (alreadySaved.content = note.content),
@@ -22,7 +18,6 @@ export default class Storage {
       note.updated_time = new Date().toLocaleString();
       notes.push(note);
     }
-
     const saveLocalStorage = localStorage.setItem(
       'notes',
       JSON.stringify(notes)

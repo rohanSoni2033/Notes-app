@@ -41,7 +41,7 @@ export default class App {
       },
       deleteNote: (id) => {
         Storage.deleteNotes(id);
-        if (this.activeNote.id === +id) {
+        if (this.activeNote?.id === +id) {
           this.modal._contentVisible(false);
         }
       },
