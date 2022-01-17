@@ -22,6 +22,8 @@ export default class Storage {
       'notes',
       JSON.stringify(notes)
     );
+
+    return note.id;
   }
 
   static deleteNotes(id) {

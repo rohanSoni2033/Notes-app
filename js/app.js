@@ -18,12 +18,14 @@ export default class App {
   _handlers() {
     return {
       createNote: (title, content) => {
-        Storage.saveNote({
+        const noteID = Storage.saveNote({
           title,
           content,
           color: '#fff',
         });
         this._refresh();
+
+        this.modal.selectNote(noteID);
       },
       updateNote: (title, content) => {
         this.activeNote.title = title;

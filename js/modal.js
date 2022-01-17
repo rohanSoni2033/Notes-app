@@ -23,11 +23,11 @@ export default class Modal {
     root.insertAdjacentHTML('afterbegin', html);
     this._ButtonHandler();
 
+    this.sidebar = this.root.querySelector('.sidebar');
+
     const btnAddNote = this.root.querySelector('.btn--add-note');
     const inputTitle = this.root.querySelector('.input--note-title');
     const inputContent = this.root.querySelector('.input--note-content');
-
-    // const sidebar = this.root.querySelector('.sidebar');
 
     btnAddNote.addEventListener('click', () => {
       createNote('my note 📝', '✅ Start writing your note...');
@@ -48,12 +48,12 @@ export default class Modal {
     const notesTemplate = `
     <div class="sidebar_note-card" data-id="${id}" style="background-color:${color}">
         <div class="sidebar_note-card_btn-container">
-            <button class="btn--note-card-color" style="background-color: #ff1818;" data-color="#ff181866"></button>
-            <button class="btn--note-card-color" style="background-color: #90ee90;" data-color="#90ee9066"></button>
-            <button class="btn--note-card-color" style="background-color: #6b00cf;" data-color="#6b00cf66"></button>
+            <button class="btn--note-card-color" style="background-color: #ff1818;" data-color="#ff18184d"></button>
+            <button class="btn--note-card-color" style="background-color: #90ee90;" data-color="#90ee904d"></button>
+            <button class="btn--note-card-color" style="background-color: #6b00cf;" data-color="#6b00cf4d"></button>
             <button class="btn--note-card-color" style="background-color: #ff8800;" 
-            data-color="#ff880066"</button>
-            <button class="btn--note-card-color" style="background-color: #00a2ff;" data-color="#00a2ff66"></button>
+            data-color="#ff88004d"</button>
+            <button class="btn--note-card-color" style="background-color: #00a2ff;" data-color="#00a2ff4d"></button>
             <button class="btn--note-card-color" style="background-color: #fff;" data-color="#fff"></button>
             <button class="btn--dlt-note"><i class="far fa-trash-alt"></i></button>
         </div>
@@ -94,6 +94,11 @@ export default class Modal {
   }
 
   _updateActiveNote(note) {
+    const noteCardActive = this.sidebar.querySelector(
+      `.sidebar_note-card[data-id="${note.id}"]`
+    );
+
+    noteCardActive.classList.add('active');
     this.root.querySelector('.input--note-title').value = note.title;
     this.root.querySelector('.input--note-content').value = note.content;
   }
@@ -104,14 +109,12 @@ export default class Modal {
     sidebar.addEventListener('click', (e) => {
       const btnChangeColor = e.target.closest('.btn--note-card-color');
       const btnDeleteNote = e.target.closest('.btn--dlt-note');
-      // const btnEditNote = e.target.closest('.btn--edit-note');
       const noteCard = e.target.closest('.sidebar_note-card');
 
       if (noteCard && !btnDeleteNote && !btnChangeColor) {
-        sidebar
+        this.sidebar
           .querySelectorAll('.sidebar_note-card')
           .forEach((card) => card.classList.remove('active'));
-        noteCard.classList.add('active');
 
         this.selectNote(noteCard.dataset.id);
       }
