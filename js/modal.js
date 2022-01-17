@@ -11,9 +11,9 @@ export default class Modal {
     this.updateNote = updateNote;
 
     const html = `
-    <button class="btn-new-note">+</button>
-    <nav class="nav"></nav>
-    <div class="note-container">
+    <button class="btn--add-note">+</button>
+    <nav class="sidebar"></nav>
+    <div class="input-note-container">
         <input class="input--note-title" type="text" placeholder="my note">
         <textarea class="input--note-content" placeholder="start typing.."></textarea>
     </div>`;
@@ -21,11 +21,11 @@ export default class Modal {
     root.insertAdjacentHTML('afterbegin', html);
     this._ButtonHandler();
 
-    const btnAddNote = this.root.querySelector('.btn-new-note');
+    const btnAddNote = this.root.querySelector('.btn--add-note');
     const inputTitle = this.root.querySelector('.input--note-title');
     const inputContent = this.root.querySelector('.input--note-content');
 
-    const nav = this.root.querySelector('.nav');
+    const sidebar = this.root.querySelector('.sidebar');
 
     btnAddNote.addEventListener('click', () => {
       createNote('my note 📝', 'i gonna dance, sing , play , study , watch tv');
@@ -44,34 +44,34 @@ export default class Modal {
     const MAX_TITLE_LENGTH = 55;
     const MAX_CONTENT_LENGTH = 75;
     const notesTemplate = `
-    <div class="notes-template" data-id="${id}" style="background-color:${color}">
-        <div class="btn-container">
-            <button class="btn--color" style="background-color: #ff1818;" data-color="#ff181866"></button>
-            <button class="btn--color" style="background-color: #90ee90;" data-color="#90ee9066"></button>
-            <button class="btn--color" style="background-color: #6b00cf;" data-color="#6b00cf66"></button>
-            <button class="btn--color" style="background-color: #ff8800;" 
+    <div class="sidebar_note-card" data-id="${id}" style="background-color:${color}">
+        <div class="sidebar_note-card_btn-container">
+            <button class="btn--note-card-color" style="background-color: #ff1818;" data-color="#ff181866"></button>
+            <button class="btn--note-card-color" style="background-color: #90ee90;" data-color="#90ee9066"></button>
+            <button class="btn--note-card-color" style="background-color: #6b00cf;" data-color="#6b00cf66"></button>
+            <button class="btn--note-card-color" style="background-color: #ff8800;" 
             data-color="#ff880066"</button>
-            <button class="btn--color" style="background-color: #00a2ff;" data-color="#00a2ff66"></button>
-            <button class="btn--dlt"><i class="far fa-trash-alt"></i></button>
-            <button class="btn--edit"><i class="far fa-edit"></i></button>
+            <button class="btn--note-card-color" style="background-color: #00a2ff;" data-color="#00a2ff66"></button>
+            <button class="btn--dlt-note"><i class="far fa-trash-alt"></i></button>
+            <button class="btn--edit-note"><i class="far fa-edit"></i></button>
         </div>
-        <span class="notes-template-title">
+        <span class="sidebar_note-card-title">
             ${title.substring(0, MAX_TITLE_LENGTH)}${
       title.length > MAX_TITLE_LENGTH ? '...' : ''
     }
         </span>
-        <span class="notes-template-content">
+        <span class="notes-card-content">
         ${content.substring(0, MAX_CONTENT_LENGTH)}${
       content.length > MAX_CONTENT_LENGTH ? '...' : ''
     }
         </span>
-        <span class="notes-template-time">
+        <span class="sidebar_note-card-time">
             ${updated_time}
         </span>
     </div>`;
 
     this.root
-      .querySelector('.nav')
+      .querySelector('.sidebar')
       .insertAdjacentHTML('afterbegin', notesTemplate);
   }
 
@@ -93,18 +93,18 @@ export default class Modal {
   }
 
   _ButtonHandler() {
-    const nav = this.root.querySelector('.nav');
+    const sidebar = this.root.querySelector('.sidebar');
 
-    nav.addEventListener('click', (e) => {
-      const btnChangeColor = e.target.closest('.btn--color');
-      const btnDeleteNote = e.target.closest('.btn--dlt');
-      const btnEditNote = e.target.closest('.btn--edit');
-      const noteCard = e.target.closest('.notes-template');
+    sidebar.addEventListener('click', (e) => {
+      const btnChangeColor = e.target.closest('.btn--note-card-color');
+      const btnDeleteNote = e.target.closest('.btn--dlt-note');
+      const btnEditNote = e.target.closest('.btn--edit-note');
+      const noteCard = e.target.closest('.sidebar_note-card');
 
       if (noteCard) {
         // console.log(noteCard.dataset.id);
-        nav
-          .querySelectorAll('.notes-template')
+        sidebar
+          .querySelectorAll('.sidebar_note-card')
           .forEach((card) => card.classList.remove('active'));
         noteCard.classList.add('active');
 
@@ -113,32 +113,32 @@ export default class Modal {
 
       if (btnChangeColor) {
         this.changeCardColor(
-          e.target.closest('.notes-template').dataset.id,
+          e.target.closest('.sidebar_note-card').dataset.id,
           btnChangeColor.dataset.color
         );
         e.target.closest(
-          '.notes-template'
+          '.sidebar_note-card'
         ).style.backgroundColor = `${btnChangeColor.dataset.color}`;
 
         const btnColor = e.target
-          .closest('.notes-template')
-          .querySelectorAll('.btn--color');
+          .closest('.sidebar_note-card')
+          .querySelectorAll('.btn--note-card-color');
         btnColor.forEach((btn) => btn.classList.remove('active'));
         btnChangeColor.classList.add('active');
       }
 
       if (btnDeleteNote) {
-        this.deleteNote(e.target.closest('.notes-template').dataset.id);
-        e.target.closest('.notes-template').classList.add('dlt--note');
+        this.deleteNote(e.target.closest('.sidebar_note-card').dataset.id);
+        e.target.closest('.sidebar_note-card').classList.add('dlt--note');
         setTimeout(() => {
-          e.target.closest('.notes-template').remove();
+          e.target.closest('.sidebar_note-card').remove();
         }, 500);
       }
     });
   }
 
   _contentVisible(active) {
-    this.root.querySelector('.note-container').style.visibility = `${
+    this.root.querySelector('.input-note-container').style.visibility = `${
       active ? 'visible' : 'hidden'
     }`;
   }

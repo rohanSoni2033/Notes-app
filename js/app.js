@@ -34,6 +34,7 @@ export default class App {
       },
       deleteNote: (id) => {
         Storage.deleteNotes(id);
+        // this._refresh();
       },
       changeCardColor: (id, color) => {
         Storage.changeCardColor(id, color);
@@ -44,7 +45,7 @@ export default class App {
   }
 
   _refresh() {
-    this.root.querySelector('.nav').innerHTML = ``;
+    this.root.querySelector('.sidebar').innerHTML = ``;
     this.notes = Storage.getAllNotes();
     this.notes.forEach((note) => this.modal._createNotesTemplate(note));
   }

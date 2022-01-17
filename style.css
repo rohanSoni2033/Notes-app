@@ -36,7 +36,7 @@ textarea:focus {
   justify-content: space-between;
 }
 
-.nav {
+.sidebar {
   width: 25%;
   min-width: 250px;
   height: 100%;
@@ -48,32 +48,40 @@ textarea:focus {
   overflow-y: scroll;
 }
 
-.nav::-webkit-scrollbar {
+.sidebar::-webkit-scrollbar {
   width: 4px;
 }
-.nav::-webkit-scrollbar-thumb {
+.sidebar::-webkit-scrollbar-thumb {
   background-color: rgb(102, 102, 102, 0.2);
-  border-radius: 8px;
 }
 
-.btn-new-note {
+.btn--add-note {
   width: 50px;
-  font-size: 24px;
   height: 50px;
-  background-color: rgb(46, 46, 46);
-  color: white;
-  border-radius: 6px;
+  font-size: 24px;
+  border-radius: 50%;
+  background-color: #2e2e2e;
+  color: #fff;
   position: absolute;
   right: 10px;
   top: 10px;
-  border-radius: 50%;
   transition: transform 0.4s;
 }
-.btn-new-note:hover {
-  transform: rotate(180deg);
+.btn--add-note:hover {
+  transform: rotate(90deg);
 }
 
-.notes-template {
+.sidebar_note-card_btn-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.sidebar_note-card_btn-container button:hover {
+  transform: scale(1.1);
+}
+
+.sidebar_note-card {
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -81,58 +89,44 @@ textarea:focus {
   padding: 12px;
   border-radius: 12px;
   box-shadow: 0 1px 6px rgba(0, 0, 0, 0.2);
-  transition: all 0.4s ease-out;
+  transition: all 0.2s ease-out;
   cursor: pointer;
 }
 
-.notes-template:hover {
-  transform: translateY(-8px);
+.sidebar_note-card:hover {
+  transform: translateY(-6px);
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
-.notes-template.active {
-  /* transform: translateX(20px); */
-  outline: 4px solid rgb(5, 5, 5);
+.sidebar_note-card.active {
+  transform: translateX(14px);
 }
 
-.notes-template.dlt--note {
+.sidebar_note-card.dlt--note {
   transform: translateX(-100%) translateY(-100%);
-  /* transform: translateX(-500px); */
   opacity: 0;
 }
 
-.btn-container {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-.notes-template-title {
+.sidebar_note-card-title {
   font-size: 18px;
   font-weight: 600;
 }
 
-.notes-template-time {
+.sidebar_note-card-time {
   font-size: 12px;
 }
 
-.btn--color {
+.btn--note-card-color {
   width: 18px;
   height: 18px;
   border-radius: 50%;
 }
 
-.btn--dlt:hover {
-  color: rgb(255, 0, 0);
-}
-.btn--edit:hover {
-  color: rgb(132, 0, 255);
+.btn--note-card-color.active {
+  outline: 2px solid #fff;
 }
 
-.btn--color.active {
-  outline: 2px solid rgb(255, 255, 255);
-}
-
-.note-container {
+.input-note-container {
   width: 75%;
   height: 100%;
   display: flex;
