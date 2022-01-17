@@ -22,6 +22,8 @@ input,
 textarea {
   border: 0;
   font-family: inherit;
+  background-color: inherit;
+  color: inherit;
 }
 
 input:focus,
@@ -123,7 +125,7 @@ textarea:focus {
 }
 
 .btn--note-card-color.active {
-  outline: 2px solid #fff;
+  outline: 2px solid rgb(231, 231, 231);
 }
 
 .input-note-container {

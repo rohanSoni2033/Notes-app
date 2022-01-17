@@ -21,7 +21,7 @@ export default class App {
         Storage.saveNote({
           title,
           content,
-          color: 'white',
+          color: '#fff',
         });
         this._refresh();
       },
@@ -30,7 +30,6 @@ export default class App {
         this.activeNote.content = content;
 
         Storage.saveNote(this.activeNote);
-
         this._refresh();
       },
       selectNote: (id) => {

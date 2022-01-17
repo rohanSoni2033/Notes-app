@@ -31,7 +31,7 @@ export default class Storage {
 
     if (noteIndex < 0) return;
 
-    console.log(notes.splice(noteIndex, 1));
+    notes.splice(noteIndex, 1);
 
     const saveLocalStorage = localStorage.setItem(
       'notes',
