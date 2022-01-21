@@ -1,5 +1,5 @@
-import Storage from 'localStorage.js';
-import Modal from 'modal.js';
+import Storage from './localStorage.js';
+import Modal from './modal.js';
 
 export default class App {
   constructor(root) {
